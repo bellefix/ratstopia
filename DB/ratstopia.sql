@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 04 dec 2022 kl 16:28
+-- Tid vid skapande: 04 dec 2022 kl 17:18
 -- Serverversion: 10.4.25-MariaDB
 -- PHP-version: 8.1.10
 
@@ -33,7 +33,7 @@ CREATE TABLE `customers` (
   `last_name` varchar(150) NOT NULL,
   `address` varchar(120) NOT NULL,
   `mail` varchar(80) NOT NULL,
-  `phone_number` int(15) NOT NULL
+  `phone_number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

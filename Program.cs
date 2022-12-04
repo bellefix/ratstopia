@@ -2,6 +2,7 @@
 {
     private static void Main(string[] args)
     {
-        //menu.run
+        UI menu = new UI();
+        menu.menuUI();
     }
 }
