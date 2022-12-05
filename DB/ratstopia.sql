@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 04 dec 2022 kl 17:18
+-- Tid vid skapande: 05 dec 2022 kl 09:30
 -- Serverversion: 10.4.25-MariaDB
 -- PHP-version: 8.1.10
 
@@ -49,20 +49,20 @@ CREATE TABLE `members` (
   `address` varchar(120) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `is_foster_care` tinyint(1) NOT NULL
+  `role_id` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumpning av Data i tabell `members`
 --
 
-INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`, `role_id`, `is_foster_care`) VALUES
-(1, 'Angelina', 'Holmqvist', 'Tåmarksgatan 4', 'angelinaholmqvist@live.se', '0737000820', 2, 0),
-(2, 'Albin', 'Torslund', 'Tallgatan 5', 'albintors@gmail.com', '0722565695', 2, 1),
-(3, 'Ylva', 'Haugstad', 'Torp 8', 'ylva90@hotmail.com', '0727005699', 2, 1),
-(4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', 1, 1),
-(5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', 2, 0);
+INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`, `role_id`) VALUES
+(1, 'Angelina', 'Holmqvist', 'Tåmarksgatan 4', 'angelinaholmqvist@live.se', '0737000820', '2'),
+(2, 'Albin', 'Torslund', 'Tallgatan 5', 'albintors@gmail.com', '0722565695', '2'),
+(3, 'Ylva', 'Haugstad', 'Torp 8', 'ylva90@hotmail.com', '0727005699', '2'),
+(4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', '1'),
+(5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', '2'),
+(6, 'Irene', 'Gustafsson', 'Annelund 14B', 'irene@live.se', '0706409039', '0');
 
 -- --------------------------------------------------------
 
@@ -196,7 +196,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT för tabell `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT för tabell `orders`

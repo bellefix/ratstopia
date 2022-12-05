@@ -37,6 +37,7 @@ public class UI
     public void BecomeAMember()
     {
         Clear();
+        Member addNewMember = new Member();
         WriteLine("Enter your firstname: ");
         string name = ReadLine()!;
         WriteLine("Enter your lastname: ");
@@ -47,6 +48,8 @@ public class UI
         string mail = ReadLine()!;
         WriteLine("Enter your phone number: ");
         string phonenumber = ReadLine()!;
-        WriteLine(name + lastname + address + mail + phonenumber);
+        string givenRoleId = "2";
+        WriteLine("Your member-information: " +name+ " " +lastname+ ", " +address+ ", " +mail+ ", " +phonenumber);
+        addNewMember.BecomeANewMember(name, lastname, address, mail, phonenumber, givenRoleId);
     }
 }

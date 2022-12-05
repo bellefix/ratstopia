@@ -1,7 +1,7 @@
 using MySqlConnector;
 using Dapper;
 
-public class member
+public class Member
 {
     public MySqlConnection Connection()
     {
@@ -9,8 +9,8 @@ public class member
         connection = new MySqlConnection("Server=localhost;Database=ratstopia;Uid=root;");
         return connection;
     }
-    public void BecomeANewMember(string name, string lastname, string address, string mail, string phonenumber)
+    public void BecomeANewMember(string name, string last_name, string address, string mail, string phone_number, string role_id)
     {
-        Connection().Query($"INSERT INTO customer @ (name, lastname, address, mail, phonenumber) VALUES ('{name}', '{lastname}', '{address}', '{mail}', '{phonenumber}');");
+        Connection().Query($"INSERT INTO members (name, last_name, address, mail, phone_number, role_id) VALUES ('{name}', '{last_name}', '{address}', '{mail}', '{phone_number}', '{role_id}');");
     }
 }
