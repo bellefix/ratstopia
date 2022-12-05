@@ -21,6 +21,7 @@ public class UI
                 break;
 
                 case ConsoleKey.D2:
+                RatAdoption();
                 ReadKey();
                 break;
 
@@ -49,7 +50,21 @@ public class UI
         WriteLine("Enter your phone number: ");
         string phonenumber = ReadLine()!;
         string givenRoleId = "2";
+        // Userinput goes into BecomeANewMember in Member and get saved down to database.
+        // Members can only have roleid 2, therefor givenRoleId will always be 2.
         WriteLine("Your member-information: " +name+ " " +lastname+ ", " +address+ ", " +mail+ ", " +phonenumber);
         addNewMember.BecomeANewMember(name, lastname, address, mail, phonenumber, givenRoleId);
+    }
+    public void RatAdoption()
+    {
+        Clear();
+        List<Rats> allRats = new();
+        Rats allRatsInformation = new Rats();
+        WriteLine(">> All published rats for adoption:\n");
+        allRats = allRatsInformation.AdoptionInfo();
+        foreach (var rats in allRats)
+        {
+            WriteLine("Is available: " + rats.is_available + ". Name: " + rats.name + ". Age: " + rats.age + ". Details: " + rats.details + ". Gender: " + rats.gender + ".");
+        }
     }
 }

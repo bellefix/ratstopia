@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 05 dec 2022 kl 09:30
+-- Tid vid skapande: 05 dec 2022 kl 10:28
 -- Serverversion: 10.4.25-MariaDB
 -- PHP-version: 8.1.10
 
@@ -62,7 +62,7 @@ INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_numb
 (3, 'Ylva', 'Haugstad', 'Torp 8', 'ylva90@hotmail.com', '0727005699', '2'),
 (4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', '1'),
 (5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', '2'),
-(6, 'Irene', 'Gustafsson', 'Annelund 14B', 'irene@live.se', '0706409039', '0');
+(7, 'Irene', 'Gustafsson', 'Annelund 15B', 'irene@live.se', '0706409039', '2');
 
 -- --------------------------------------------------------
 
@@ -111,8 +111,22 @@ CREATE TABLE `products_to_order` (
 CREATE TABLE `rats` (
   `id` int(11) NOT NULL,
   `is_available` tinyint(1) NOT NULL,
-  `member_id` int(11) NOT NULL
+  `member_id` varchar(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `age` varchar(50) NOT NULL,
+  `details` varchar(100) NOT NULL,
+  `gender` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumpning av Data i tabell `rats`
+--
+
+INSERT INTO `rats` (`id`, `is_available`, `member_id`, `name`, `age`, `details`, `gender`) VALUES
+(1, 1, '', 'Rex', '5 months', 'Ears Dumbo, Color Albino', 'Male'),
+(2, 1, '', 'Lola', '1 year', 'Dove: Very pale grey.', 'Female'),
+(3, 1, '', 'Loke', '4 Months', 'Powder Blue: Pale blue/brown.', 'Male'),
+(4, 0, '3', 'Lizzy', '7 Months', 'Champagne: Soft cream or off-white.', 'Female');
 
 -- --------------------------------------------------------
 
@@ -196,7 +210,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT för tabell `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT för tabell `orders`
@@ -214,7 +228,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT för tabell `rats`
 --
 ALTER TABLE `rats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT för tabell `roles`
