@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 05 dec 2022 kl 10:28
+-- Tid vid skapande: 05 dec 2022 kl 11:43
 -- Serverversion: 10.4.25-MariaDB
 -- PHP-version: 8.1.10
 
@@ -90,6 +90,14 @@ CREATE TABLE `products` (
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumpning av Data i tabell `products`
+--
+
+INSERT INTO `products` (`id`, `product`, `price`, `quantity`) VALUES
+(1, 'Rat-Calendar 2023-2024', 169, 22),
+(2, 'Postcard', 39, 120);
 
 -- --------------------------------------------------------
 
@@ -222,7 +230,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT för tabell `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT för tabell `rats`

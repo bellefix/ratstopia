@@ -6,7 +6,7 @@ public class Member
     public MySqlConnection Connection()
     {
         MySqlConnection connection = new();
-        connection = new MySqlConnection("Server=localhost;Database=ratstopia;Uid=root;");
+        connection = new MySqlConnection("Server=localhost;Database=ratstopiaDB;Uid=root;");
         return connection;
     }
     public void BecomeANewMember(string name, string last_name, string address, string mail, string phone_number, string role_id)

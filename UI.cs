@@ -26,6 +26,7 @@ public class UI
                 break;
 
                 case ConsoleKey.D3:
+                StoreMode();
                 ReadKey();
                 break;
 
@@ -66,5 +67,42 @@ public class UI
         {
             WriteLine("Is available: " + rats.is_available + ". Name: " + rats.name + ". Age: " + rats.age + ". Details: " + rats.details + ". Gender: " + rats.gender + ".");
         }
+    }
+
+    public void StoreMode()
+    {
+        int price = 169;
+        Products buyProduct = new Products();
+        Clear();
+        WriteLine(">> Wellcome to ratstopia store.\n");
+        WriteLine("By purshasing items from our store you'll be supporting our work.");
+        WriteLine("Proceeds goes directly to the business.\n");
+        
+        string productName = "Rat-Calendar, 169:-";
+        WriteLine("Do you wanna purchase " + productName + price + "? [y]Yes [n]No");
+        var key = ReadKey();
+
+        if (key.KeyChar == 'y')
+        {
+            Clear();
+            WriteLine("Thank you for purchasing" + productName + "!");
+            WriteLine("Press any key to return to the main menu.");
+            
+        }
+        else if (key.KeyChar == 'n')
+        {
+            Clear();
+            WriteLine("Press any key to be returned to main menu.");
+            
+        }
+        else
+        {
+            Clear();
+            WriteLine("Incorrect input.");
+        }
+
+        string product = productName;
+
+        buyProduct.addToOrder(price, product);
     }
 }
