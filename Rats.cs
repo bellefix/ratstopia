@@ -3,7 +3,7 @@ using Dapper;
 public class Rats
 {
     public bool is_available { get; set; }
-    public string? name {get; set; }
+    public string? name { get; set; }
     public string? age { get; set; }
     public string? details { get; set; }
     public string? gender { get; set; }
@@ -17,5 +17,10 @@ public class Rats
     {
         List<Rats> allRatsInformation = Connection().Query<Rats>("SELECT is_available, name, age, details, gender FROM rats;").ToList();
         return allRatsInformation;
+    }
+
+    public void RatsToMember()
+    {
+        
     }
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 05 dec 2022 kl 11:43
--- Serverversion: 10.4.25-MariaDB
--- PHP-version: 8.1.10
+-- Tid vid skapande: 12 dec 2022 kl 13:08
+-- Serverversion: 10.4.27-MariaDB
+-- PHP-version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databas: `ratstopia`
+-- Databas: `ratstopiadb`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,15 @@ CREATE TABLE `customers` (
   `address` varchar(120) NOT NULL,
   `mail` varchar(80) NOT NULL,
   `phone_number` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`) VALUES
+(1, 'Olle', 'Hammarström', 'Valhallavägen 4b, 52493 Hudene', 'ollehammarstrom@gmail.com', '0722450088'),
+(2, 'Helena', 'Rundqvist', 'Törnvägen 5, 52431 Floby', 'helena1977@live.se', '0736667821');
 
 -- --------------------------------------------------------
 
@@ -49,20 +57,23 @@ CREATE TABLE `members` (
   `address` varchar(120) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
-  `role_id` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `role_id` varchar(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `members`
 --
 
-INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`, `role_id`) VALUES
-(1, 'Angelina', 'Holmqvist', 'Tåmarksgatan 4', 'angelinaholmqvist@live.se', '0737000820', '2'),
-(2, 'Albin', 'Torslund', 'Tallgatan 5', 'albintors@gmail.com', '0722565695', '2'),
-(3, 'Ylva', 'Haugstad', 'Torp 8', 'ylva90@hotmail.com', '0727005699', '2'),
-(4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', '1'),
-(5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', '2'),
-(7, 'Irene', 'Gustafsson', 'Annelund 15B', 'irene@live.se', '0706409039', '2');
+INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`, `role_id`, `username`, `password`) VALUES
+(1, 'Angelina', 'Holmqvist', 'Tåmarksgatan 4', 'angelinaholmqvist@live.se', '0737000820', '2', '', ''),
+(2, 'Albin', 'Torslund', 'Tallgatan 5', 'albintors@gmail.com', '0722565695', '2', '', ''),
+(3, 'Ylva', 'Haugstad', 'Torp 8', 'ylva90@hotmail.com', '0727005699', '2', '', ''),
+(4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', '1', '', ''),
+(5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', '2', '', ''),
+(7, 'Irene', 'Gustafsson', 'Annelund 15B', 'irene@live.se', '0706409039', '2', '', ''),
+(8, 'Daniel', 'Andersson', 'Östlyckan 6', 'daniel@live.se', '0706234589', '2', '', '');
 
 -- --------------------------------------------------------
 
@@ -73,10 +84,8 @@ INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_numb
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `order_nr` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `customer_id` int(60) NOT NULL,
-  `has_been_sent` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `customer_id` int(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -87,17 +96,15 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product` varchar(100) NOT NULL,
-  `price` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `products`
 --
 
-INSERT INTO `products` (`id`, `product`, `price`, `quantity`) VALUES
-(1, 'Rat-Calendar 2023-2024', 169, 22),
-(2, 'Postcard', 39, 120);
+INSERT INTO `products` (`id`, `product`, `price`) VALUES
+(1, 'Rat-Calendar 2023-2024', 169);
 
 -- --------------------------------------------------------
 
@@ -108,7 +115,14 @@ INSERT INTO `products` (`id`, `product`, `price`, `quantity`) VALUES
 CREATE TABLE `products_to_order` (
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumpning av Data i tabell `products_to_order`
+--
+
+INSERT INTO `products_to_order` (`product_id`, `order_id`) VALUES
+(0, 0);
 
 -- --------------------------------------------------------
 
@@ -124,7 +138,7 @@ CREATE TABLE `rats` (
   `age` varchar(50) NOT NULL,
   `details` varchar(100) NOT NULL,
   `gender` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `rats`
@@ -145,7 +159,7 @@ INSERT INTO `rats` (`id`, `is_available`, `member_id`, `name`, `age`, `details`,
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `role_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `roles`
@@ -212,13 +226,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT för tabell `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT för tabell `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT för tabell `orders`
