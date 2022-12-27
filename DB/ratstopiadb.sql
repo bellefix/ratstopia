@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 12 dec 2022 kl 13:08
+-- Tid vid skapande: 27 dec 2022 kl 13:32
 -- Serverversion: 10.4.27-MariaDB
 -- PHP-version: 8.1.12
 
@@ -42,7 +42,10 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `last_name`, `address`, `mail`, `phone_number`) VALUES
 (1, 'Olle', 'Hammarström', 'Valhallavägen 4b, 52493 Hudene', 'ollehammarstrom@gmail.com', '0722450088'),
-(2, 'Helena', 'Rundqvist', 'Törnvägen 5, 52431 Floby', 'helena1977@live.se', '0736667821');
+(2, 'Helena', 'Rundqvist', 'Törnvägen 5, 52431 Floby', 'helena1977@live.se', '0736667821'),
+(3, 'Martin', 'Warg', 'tallbarrevägen 2', 'martin@live.se', '0706556677'),
+(4, 'Isabell', 'Gustafsson', 'tubbarp 8', 'isabell@gmail.com', '0722429595'),
+(8, 'dsadsd', 'dsadas', 'dasdasd', 'dasdsda', 'dasdasd');
 
 -- --------------------------------------------------------
 
@@ -73,7 +76,8 @@ INSERT INTO `members` (`id`, `name`, `last_name`, `address`, `mail`, `phone_numb
 (4, 'Isabell', 'Gustafsson', 'Tubbarp 8', 'bellefixgustafsson@outlook.com', '0722429595', '1', '', ''),
 (5, 'Joel', 'Hildén', 'Västergården 2', 'jolle@gmail.com', '0706394909', '2', '', ''),
 (7, 'Irene', 'Gustafsson', 'Annelund 15B', 'irene@live.se', '0706409039', '2', '', ''),
-(8, 'Daniel', 'Andersson', 'Östlyckan 6', 'daniel@live.se', '0706234589', '2', '', '');
+(8, 'Daniel', 'Andersson', 'Östlyckan 6', 'daniel@live.se', '0706234589', '2', '', ''),
+(9, 'Elsa', 'Johansson', 'Kajakvägen 8', 'elsaj@live.se', '0737556677', '2', 'elsajohansson13', 'blomman123');
 
 -- --------------------------------------------------------
 
@@ -96,15 +100,16 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product` varchar(100) NOT NULL,
-  `price` int(11) NOT NULL
+  `price` int(11) NOT NULL,
+  `in_stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumpning av Data i tabell `products`
 --
 
-INSERT INTO `products` (`id`, `product`, `price`) VALUES
-(1, 'Rat-Calendar 2023-2024', 169);
+INSERT INTO `products` (`id`, `product`, `price`, `in_stock`) VALUES
+(1, 'Rat-Calendar 2023-2024', 169, 60);
 
 -- --------------------------------------------------------
 
@@ -122,6 +127,11 @@ CREATE TABLE `products_to_order` (
 --
 
 INSERT INTO `products_to_order` (`product_id`, `order_id`) VALUES
+(0, 0),
+(0, 0),
+(0, 0),
+(0, 0),
+(0, 0),
 (0, 0);
 
 -- --------------------------------------------------------
@@ -226,13 +236,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT för tabell `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT för tabell `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT för tabell `orders`

@@ -2,6 +2,8 @@ using static System.Console;
 public class UI
 {
     static ConsoleKey menuKeys = ConsoleKey.NoName;
+    int price = 169;
+    string productName = "Rat-Calendar 2023-2024";
     public void menuUI()
     {
         while (true)
@@ -85,6 +87,8 @@ public class UI
     public void CreateCustomer()
     {
         Customer newCustomer = new Customer();
+        Orders newOrder = new Orders();
+        Products productsToOrder = new Products();
         WriteLine("Customer Info");
         WriteLine("Enter your firstname: ");
         string name = ReadLine()!;
@@ -96,18 +100,19 @@ public class UI
         string mail = ReadLine()!;
         WriteLine("Enter your phonenumber: ");
         string phone_number = ReadLine()!;
-        newCustomer.CreateNewCustomer(name, last_name, address, mail, phone_number);
+        int customer_id = newCustomer.CreateNewCustomer(name, last_name, address, mail, phone_number);
+        int order_id = newOrder.OrderDB(customer_id);
+        int product_id = productsToOrder.getProducts(productName);
+        productsToOrder.addToOrder(order_id, product_id);
     }
     public void StoreMode()
     {
-        int price = 169;
         Products buyProduct = new Products();
         Clear();
         WriteLine(">> Wellcome to ratstopia store.\n");
         WriteLine("By purshasing items from our store you'll be supporting our work.");
         WriteLine("Proceeds goes directly to the business.\n");
         
-        string productName = "Rat-Calendar";
         WriteLine("Do you wanna purchase " + productName + price + "? [y]Yes [n]No");
         var key = ReadKey();
 
@@ -121,16 +126,11 @@ public class UI
         {
             Clear();
             WriteLine("Press any key to be returned to main menu.");
-            
         }
         else
         {
             Clear();
             WriteLine("Incorrect input.");
         }
-
-        string product = productName;
-
-        buyProduct.addToOrder(price, product);
     }
 }

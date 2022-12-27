@@ -9,12 +9,11 @@ public class Orders
         connection = new MySqlConnection("Server=localhost;Database=ratstopiaDB;Uid=root;");
         return connection;
     }
-    public int CreateNewCustomer(string name, string last_name, string address, string mail, string phone_number)
+
+    public int OrderDB(int customer_id)
     {
-        int returnCustomer = Connection().Query<int>($@"
-        INSERT INTO customers (name, last_name, address, mail, phone_number)
-        VALUES ('{name}', '{last_name}', '{address}', '{mail}', '{phone_number}');
-        SELECT CAST(LAST_INSERT_ID() AS UNSIGNED INTEGER);").Single();
-        return returnCustomer;
+        int order_id = Connection().Query<int>(@$" INSERT into orders (customer_id)
+        VALUES ({customer_id}); SELECT CAST(LAST_INSERT_ID() AS UNSIGNED INTEGER);").Single();
+        return order_id;
     }
 }

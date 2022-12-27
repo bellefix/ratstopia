@@ -15,7 +15,8 @@ public class Rats
     }
     public List<Rats> AdoptionInfo()
     {
-        List<Rats> allRatsInformation = Connection().Query<Rats>("SELECT is_available, name, age, details, gender FROM rats;").ToList();
+        List<Rats> allRatsInformation = Connection().Query<Rats>(@"SELECT
+        is_available, name, age, details, gender FROM rats;").ToList();
         return allRatsInformation;
     }
 
