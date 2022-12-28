@@ -13,12 +13,13 @@ public class Products
         return connection;
     }
 
-    public int getProducts(string product)
+    public int GetProducts(string product)
     {
-        int product_id = Connection().Query<int>($"SELECT id FROM products WHERE product = '{product}'").Single();
+        int product_id = Connection().Query<int>(@$"SELECT id FROM products 
+        WHERE product = '{product}';").Single();
         return product_id;
     }
-    public void addToOrder(int order_id, int product_id)
+    public void AddToOrder(int order_id, int product_id)
     {
         Connection().Query($" INSERT into products_to_order (order_id, product_id) VALUES ({order_id}, {product_id})");       
     }

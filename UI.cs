@@ -4,6 +4,7 @@ public class UI
     static ConsoleKey menuKeys = ConsoleKey.NoName;
     int price = 169;
     string productName = "Rat-Calendar 2023-2024";
+    string memberRole = "member";
     public void menuUI()
     {
         while (true)
@@ -29,7 +30,7 @@ public class UI
                 break;
 
                 case ConsoleKey.D3:
-                RatAdoption();
+                RatsAvailable();
                 ReadKey();
                 break;
 
@@ -47,7 +48,7 @@ public class UI
     public void BecomeAMember()
     {
         Clear();
-        Member addNewMember = new Member();
+        Roles member = new Roles();
         WriteLine("Enter your firstname: ");
         string name = ReadLine()!;
         WriteLine("Enter your lastname: ");
@@ -62,16 +63,15 @@ public class UI
         string username = ReadLine()!;
         WriteLine("Enter a password: ");
         string password = ReadLine()!;
-        string givenRoleId = "2";
-        // Userinput goes into BecomeANewMember in Member and get saved down to database.
-        // Members can only have roleid 2, therefor givenRoleId will always be 2.
+        int member_id =  member.MemberRole(memberRole);
         WriteLine("Your member-information: " +name+ " " +lastname+ ", " +address+ ", " +mail+ ", " +phonenumber+ "," + username);
-        addNewMember.BecomeANewMember(name, lastname, address, mail, phonenumber, givenRoleId, username, password);
+        member.BecomeANewMember(name, lastname, address, mail, phonenumber, member_id, username, password);
     }
+        
     public void MemberLogin() 
     { 
     }
-    public void RatAdoption()
+    public void RatsAvailable()
     {
         Clear();
         List<Rats> allRats = new();
@@ -102,12 +102,11 @@ public class UI
         string phone_number = ReadLine()!;
         int customer_id = newCustomer.CreateNewCustomer(name, last_name, address, mail, phone_number);
         int order_id = newOrder.OrderDB(customer_id);
-        int product_id = productsToOrder.getProducts(productName);
-        productsToOrder.addToOrder(order_id, product_id);
+        int product_id = productsToOrder.GetProducts(productName);
+        productsToOrder.AddToOrder(order_id, product_id);
     }
     public void StoreMode()
-    {
-        Products buyProduct = new Products();
+    {   
         Clear();
         WriteLine(">> Wellcome to ratstopia store.\n");
         WriteLine("By purshasing items from our store you'll be supporting our work.");
