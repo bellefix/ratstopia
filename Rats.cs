@@ -19,9 +19,4 @@ public class Rats
         is_available, name, age, details, gender FROM rats;").ToList();
         return allRatsInformation;
     }
-
-    public void RatsToMember()
-    {
-        
-    }
 }

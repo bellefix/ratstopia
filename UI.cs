@@ -25,16 +25,11 @@ public class UI
                 break;
 
                 case ConsoleKey.D2:
-                MemberLogin();
-                ReadKey();
-                break;
-
-                case ConsoleKey.D3:
                 RatsAvailable();
                 ReadKey();
                 break;
 
-                case ConsoleKey.D4:
+                case ConsoleKey.D3:
                 StoreMode();
                 ReadKey();
                 break;
@@ -44,11 +39,10 @@ public class UI
             }               
         }
     }
-
     public void BecomeAMember()
     {
         Clear();
-        Roles member = new Roles();
+        Members member = new Members();
         WriteLine("Enter your firstname: ");
         string name = ReadLine()!;
         WriteLine("Enter your lastname: ");
@@ -67,10 +61,6 @@ public class UI
         WriteLine("Your member-information: " +name+ " " +lastname+ ", " +address+ ", " +mail+ ", " +phonenumber+ "," + username);
         member.BecomeANewMember(name, lastname, address, mail, phonenumber, member_id, username, password);
     }
-        
-    public void MemberLogin() 
-    { 
-    }
     public void RatsAvailable()
     {
         Clear();
@@ -83,7 +73,6 @@ public class UI
             WriteLine(" " + " " + "Name: " + rats.name + ". Age: " + rats.age + ". Details: " + rats.details + ". Gender: " + rats.gender + ".");
         }
     }
-
     public void CreateCustomer()
     {
         Customer newCustomer = new Customer();

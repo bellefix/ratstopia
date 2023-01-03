@@ -9,7 +9,6 @@ public class Orders
         connection = new MySqlConnection("Server=localhost;Database=ratstopiaDB;Uid=root;");
         return connection;
     }
-
     public int OrderDB(int customer_id)
     {
         int order_id = Connection().Query<int>(@$" INSERT into orders (customer_id)

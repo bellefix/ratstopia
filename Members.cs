@@ -1,7 +1,7 @@
 using MySqlConnector;
 using Dapper;
 
-public class Roles
+public class Members
 {
     public MySqlConnection Connection()
     {
@@ -15,12 +15,10 @@ public class Roles
         role_id, username, password) VALUES ('{name}', '{last_name}', '{address}', '{mail}', 
         '{phone_number}', {role_id}, '{username}', '{password}');");
     }
-
     public void GetMembersFromDatabase(string username, string password)
     {
         var queryLogin = Connection().Query($"SELECT username, password FROM members");
     }
-
     public int MemberRole(string member)
     {
         int member_id = Connection().Query<int>(@$"SELECT id FROM roles 
