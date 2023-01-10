@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 09 jan 2023 kl 19:33
+-- Tid vid skapande: 10 jan 2023 kl 21:35
 -- Serverversion: 10.4.27-MariaDB
 -- PHP-version: 8.1.12
 
@@ -46,14 +46,8 @@ INSERT INTO `customers` (`id`, `name`, `last_name`, `address`, `mail`, `phone_nu
 (3, 'Martin', 'Warg', 'tallbarrevägen 2', 'martin@live.se', '0706556677'),
 (4, 'Isabell', 'Gustafsson', 'tubbarp 8', 'isabell@gmail.com', '0722429595'),
 (9, 'Oskar', 'Wigertsson', 'Leksaksgatan 3', 'oskar@live.se', '0706789844'),
-(10, 'dsada', 'dsadas', 'dasdasdas', 'sdasdasas', '34423432432'),
-(11, 'sdsadsa', 'dsadasdas', 'dasdasdas', 'sadsddasd', 'dasdasda'),
-(12, 'sdasdas', 'dasasda', 'sdsada', 's', 'sada'),
-(13, 'dfsdf', 'dsfd', 'fdsdfs', 'fsdfsd', 'fdsfsdf'),
 (14, 'Krister', 'Trangius', 'göteborg', 'krister@hotmail.com', '0707585858'),
-(15, 'Hasse', 'Andersson', 'Götagården 4', 'Hassebosse@gmail.com', '0708996677'),
-(16, 'dsdasd', 'sffdssffsd', 'fdsfsdfsd', 'dfsfdsfsd', 'fsdfsdfsd'),
-(17, 'dsadas', 'dsads', 'dasdas', 'dsadasdas', 'sdsadas');
+(15, 'Hasse', 'Andersson', 'Götagården 4', 'Hassebosse@gmail.com', '0708996677');
 
 -- --------------------------------------------------------
 
@@ -113,7 +107,9 @@ INSERT INTO `orders` (`id`, `customer_id`) VALUES
 (6, 14),
 (7, 15),
 (8, 16),
-(9, 17);
+(9, 17),
+(10, 18),
+(11, 19);
 
 -- --------------------------------------------------------
 
@@ -158,8 +154,15 @@ INSERT INTO `products_to_order` (`product_id`, `order_id`) VALUES
 (0, 0),
 (0, 0),
 (0, 0),
+(1, 1),
+(1, 1),
+(1, 1),
 (1, 4),
-(1, 6);
+(1, 6),
+(2, 2),
+(2, 2),
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -263,7 +266,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT för tabell `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT för tabell `members`
@@ -275,7 +278,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT för tabell `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT för tabell `products`
