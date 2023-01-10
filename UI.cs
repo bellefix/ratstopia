@@ -1,20 +1,20 @@
 using static System.Console;
 public class UI
 {
-    static ConsoleKey menuKeys = ConsoleKey.NoName;
-    int price = 169;
-    string productName = "Rat-Calendar 2023-2024";
+    public ConsoleKey menuKeys = ConsoleKey.NoName;
+    List<string> productsToBuy = new List<string>();
+    int order_id;
     string memberRole = "member";
     public void menuUI()
     {
+        Clear();
         while (true)
         {
             WriteLine("\n>> RATSTOPIA <<\n");
             WriteLine("Wellcome to Ratstopia, what would you like to do?");
             WriteLine("1* Become a member.");
-            WriteLine("2* Login as member.");
-            WriteLine("3* Check rats ready for adoption.");
-            WriteLine("4* Visit the store.");
+            WriteLine("2* Check rats ready for adoption.");
+            WriteLine("3* Visit the store.");
             menuKeys = ReadKey(true).Key;
 
             switch (menuKeys)
@@ -70,7 +70,7 @@ public class UI
         allRats = allRatsInformation.AdoptionInfo();
         foreach (var rats in allRats)
         {
-            WriteLine(" " + " " + "Name: " + rats.name + ". Age: " + rats.age + ". Details: " + rats.details + ". Gender: " + rats.gender + ".");
+            WriteLine("Is Available: " + rats.is_available + " " + ". Name: " + rats.name + ". Age: " + rats.age + ". Details: " + rats.details + ". Gender: " + rats.gender + ".");
         }
     }
     public void CreateCustomer()
@@ -90,9 +90,13 @@ public class UI
         WriteLine("Enter your phonenumber: ");
         string phone_number = ReadLine()!;
         int customer_id = newCustomer.CreateNewCustomer(name, last_name, address, mail, phone_number);
-        int order_id = newOrder.OrderDB(customer_id);
-        int product_id = productsToOrder.GetProducts(productName);
-        productsToOrder.AddToOrder(order_id, product_id);
+        order_id = newOrder.OrderDB(customer_id);
+        foreach (var product in productsToBuy)
+        {
+            int product_id = productsToOrder.GetProducts(product);
+            order_id = productsToOrder.GetProducts(product);
+            productsToOrder.AddToOrder(order_id, product_id);
+        }
     }
     public void StoreMode()
     {   
@@ -101,24 +105,61 @@ public class UI
         WriteLine("By purshasing items from our store you'll be supporting our work.");
         WriteLine("Proceeds goes directly to the business.\n");
         
-        WriteLine("Do you wanna purchase " + productName + price + "? [y]Yes [n]No");
-        var key = ReadKey();
+        WriteLine("What do you wanna purshase today?");
+        WriteLine("[1] Rat-Calendar 2023-2024");
+        WriteLine("[2] Ratstopias Rat-Food");
+        WriteLine("[3] Ratstopias Post-Card\n");
+        WriteLine("[4] Check shopping cart.");
+        WriteLine("[5] Continue to check-out.\n");
+        WriteLine("[6] Go back to main menu.");
+        menuKeys = ReadKey(true).Key;
 
-        if (key.KeyChar == 'y')
+        switch (menuKeys)
         {
+            case ConsoleKey.D1:
             Clear();
-            WriteLine("To continue with your purchase enter your personalinfo: ");
-            CreateCustomer();   
-        }
-        else if (key.KeyChar == 'n')
-        {
+            productsToBuy.Add("Rat-Calendar 2023-2024");
+            WriteLine("Rat-Calendar has now been added to your cart.");
+            ReadKey();
+            StoreMode();
+            break;
+
+            case ConsoleKey.D2:
             Clear();
-            WriteLine("Press any key to be returned to main menu.");
-        }
-        else
-        {
+            productsToBuy.Add("Ratstopias Rat-Food");
+            WriteLine("Ratstopias Rat-Food has now been added to your cart.");
+            ReadKey();
+            StoreMode();
+            break;
+
+            case ConsoleKey.D3:
             Clear();
-            WriteLine("Incorrect input.");
+            productsToBuy.Add("Ratstopias Post-Card");
+            WriteLine("Ratstopias Post-Card has now been added to your cart.");
+            ReadKey();
+            StoreMode();
+            break;
+
+            case ConsoleKey.D4:
+            Clear();
+            WriteLine("Your shopping-cart:");
+            foreach (string item in productsToBuy)
+            {
+                WriteLine(item);
+            }
+            ReadKey();
+            StoreMode();
+            break;
+
+            case ConsoleKey.D5:
+            Clear();
+            CreateCustomer();
+            break;
+
+            case ConsoleKey.D6:
+            menuUI();
+            break;
         }
+
     }
 }
