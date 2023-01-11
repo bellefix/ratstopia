@@ -94,7 +94,6 @@ public class UI
         foreach (var product in productsToBuy)
         {
             int product_id = productsToOrder.GetProducts(product);
-            order_id = productsToOrder.GetProducts(product);
             productsToOrder.AddToOrder(order_id, product_id);
         }
     }
